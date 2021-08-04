@@ -4,7 +4,7 @@
 	$servicos = Painel::selecionarTudo("servico","tb_site.servicos",0,7,"order_id");
 	$slides = Painel::selecionarTudo("slide","tb_site.slides",0,4,"order_id");
 
-	$info_autor = Painel::selecionarTudo("*","tb_site.editar");
+	$info_autor = Painel::selecionarTudo("*","tb_site.autor");
 	$especialidades = Painel::selecionarTudo("*","tb_site.especialidades");
 
 ?>
@@ -34,11 +34,11 @@
 <section class= "autor">
 	<div class="center">
 		<div class="w50 left">
-			<h2><?php echo $info_autor[0]['nome-autor']; ?></h2>
+			<h2><?php echo $info_autor[0]['nome']; ?></h2>
 
 		<?php
 
-			$arr = explode("\n", $info_autor[0]['descricao-autor']);
+			$arr = explode("\n", $info_autor[0]['descricao']);
 
 			foreach ($arr as $key => $value) {
 				echo "<p>".$value."</p>";
@@ -48,7 +48,7 @@
 		</div><!--w50-->
 
 		<div class="w50 left">
-			<img  class="right" src='<?php echo INCLUDE_PATH_PAINEL.'/uploads/'.$info_autor[0]["foto-autor"]; ?>' alt="imagem do autor do site">
+			<img  class="right" src='<?php echo INCLUDE_PATH_PAINEL.'/uploads/'.$info_autor[0]["foto"]; ?>' alt="imagem do autor do site">
 		</div><!--w50-->
 
 	</div><!--center-->
@@ -64,9 +64,9 @@
 		<?php foreach ($especialidades as $key => $value) { ?>
 
 			<div class="w33 left box-especialidade">
-				<h3><i class="<?php echo $value['classe']?>"></i></h3>
-				<h4><?php echo $value['nome-especialidade']?></h4>
-				<p><?php echo $value['descricao-especialidade']?></p>
+				<h3><i class="<?php echo $value['class']?>"></i></h3>
+				<h4><?php echo $value['nome']?></h4>
+				<p><?php echo $value['descricao']?></p>
 			</div>
 
 		<?php } ?>

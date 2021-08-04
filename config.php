@@ -16,12 +16,12 @@
 
 	//contantes
 
-	define("INCLUDE_PATH","http://localhost/Projeto_01/");
-	define("INCLUDE_PATH_PAINEL","http://localhost/Projeto_01/painel/");
+	define("INCLUDE_PATH","http://localhost/projeto01/");
+	define("INCLUDE_PATH_PAINEL","http://localhost/projeto01/painel/");
 	define("BASE_DIR_PAINEL",__DIR__.'/painel/');
 
 	define('HOST','localhost');
-	define('DATABASE','projeto_01');
+	define('DATABASE','phpprojeto01');
 	define('USER','root');
 	define('PASSWORD','');
 
@@ -55,7 +55,8 @@
 			return;
 		}else{
 			Painel::alerta("Você não tem permissão para visualizar esta página!");
-			include("painel/pages/home.php");
+			header("Location: http://localhost/projeto01/painel/");
+			die();
 			
 		}
 

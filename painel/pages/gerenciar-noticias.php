@@ -9,7 +9,7 @@
 	if(isset($_GET['excluir']))
 	{
 		$id = (int)($_GET['excluir']);
-		$deletado = Painel::deletar("id=?",array($id),"tb_site.noticias");
+		$deletado = Painel::deletar(array($id),"tb_site.noticias", "id=?");
 
 		if ($deletado != 0) 
 			Painel::deletarImagem($_GET['capa']);

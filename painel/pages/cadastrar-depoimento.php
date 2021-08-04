@@ -1,5 +1,6 @@
 <?php 
 	if(isset($_POST['acao'])){
+
 		if(Painel::inserir($_POST,"tb_site.depoimentos"))
 			Painel::alerta("Depoimento cadastrado com sucesso!");
 		else

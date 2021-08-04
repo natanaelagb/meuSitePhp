@@ -1,5 +1,6 @@
 <?php 
 	if(isset($_POST['acao'])){
+
 		if(Painel::inserir($_POST,"tb_site.servicos"))
 			Painel::alerta("Serviço cadastrado com sucesso!");
 		else

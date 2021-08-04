@@ -8,7 +8,7 @@
 			Painel::redirecionar(INCLUDE_PATH."noticias/todas-categorias");
 		}
 		$categorias = Painel::selecionarTudo("*","tb_site.categorias",0,100,'order_id');
-		$infoAutor = Painel::selecionarUm("id=?",array(1),'tb_site.editar');
+		$infoAutor = Painel::selecionarUm("id=?",array(1),'tb_site.autor');
 ?>
 
 <section class="header-noticias">
@@ -47,7 +47,7 @@
 					<option value="todas-categorias">Todas categorias</option>
 
 					<?php foreach ($categorias as $key => $value) { ?>
-						<option <?php if($value['slug'] == @$url[1]) echo "selected"?> value="<?php echo $value['slug'] ?>"><?php echo $value['categoria'] ?></option>
+						<option <?php if($value['slug'] == @$url[1]) echo "selected"?> value="<?php echo $value['slug'] ?>"><?php echo $value['nome'] ?></option>
 					<?php } ?>
 
 					</select>
@@ -58,9 +58,9 @@
 			<div class="ferramentas-single w100">
 				<div class="info-autor">
 					<span>Conheça o autor:</span>
-					<img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$infoAutor['foto-autor']?>">
-					<h2><?php echo $infoAutor['nome-autor']?></h2>
-					<p><?php echo substr($infoAutor['descricao-autor'], 0,300).'...'?></p>
+					<img src="<?php echo INCLUDE_PATH_PAINEL.'uploads/'.$infoAutor['foto']?>">
+					<h2><?php echo $infoAutor['nome']?></h2>
+					<p><?php echo substr($infoAutor['descricao'], 0,300).'...'?></p>
 				</div>
 			</div>
 
@@ -86,7 +86,7 @@
 				if($categoria == ""){
 					echo "<h2> Vizualizando todas as notícias </h2>";
 				}else
-					echo "<h2> Vizualizando as notícias da categoria <span> $categoria[categoria]</span><h2>";
+					echo "<h2> Vizualizando as notícias da categoria <span>".$categoria['nome']."</span><h2>";
 
 				$paginaAtual = isset($_GET['pagina'])? (int)$_GET['pagina']: 1;
 				$limite= isset($_GET['limite'])? (int)$_GET['limite']: 4;
@@ -94,7 +94,7 @@
 
 				$query = "SELECT * FROM `tb_site.noticias` ";
 
-				$nome = @$categoria['categoria'];
+				$nome = @$categoria['nome'];
 
 				if($categoria != "")
 				{
@@ -113,11 +113,11 @@
 
 				}
 
-				$quantidadeNoticias = Painel::comandoPorQuery($query,null,3);
+				$quantidadeNoticias = Painel::comandoPorQuery($query,3);
 
 				$query.= "ORDER BY order_id LIMIT $indice,$limite";
 
-				$noticias = Painel::comandoPorQuery($query,null,1);
+				$noticias = Painel::comandoPorQuery($query,1);
 
 				$quantidadePaginas = ceil($quantidadeNoticias/$limite);
 

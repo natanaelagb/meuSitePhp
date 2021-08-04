@@ -10,7 +10,7 @@
 	if(isset($_GET['excluir'])){
 
 		$id = (int)($_GET['excluir']);
-		$deletado = Painel::deletar("id=?",array($id),"tb_site.servicos");
+		$deletado = Painel::deletar(array($id), "tb_site.servicos", "id=?");
 		if ($deletado == 0) {
 			Painel::alerta("Ocorreu um erro ao deletar o depoimento");
 		}

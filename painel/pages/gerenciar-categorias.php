@@ -9,7 +9,7 @@
 	if(isset($_GET['excluir']))
 	{
 		$id = (int)($_GET['excluir']);
-		$deletado = Painel::deletar("id=?",array($id),"tb_site.categorias");
+		$deletado = Painel::deletar(array($id),"tb_site.categorias","id=?");
 
 		if ($deletado == 0) {
 			Painel::alerta("Ocorreu um erro ao deletar a categoria");
@@ -68,7 +68,7 @@
 			<?php foreach ($conteudo as $key => $value){?>
 					
 				<tr>
-					<td style="width: 30%"><?php echo $value['categoria']; ?></td>
+					<td style="width: 30%"><?php echo $value['nome']; ?></td>
 					<td style="width: 30%"><?php echo $value['slug']; ?></td>
 					<td style="width: 15%">
 						<a  id="editar" href="<?php echo INCLUDE_PATH_PAINEL;?>editar-categoria?id=<?php echo $value['id']?>"><i class="fas fa-edit"></i> Editar </a>

@@ -25,7 +25,7 @@
 				else
 					Painel::alerta("Formato de arquivo inválido ou tamanho da imagem superior a 1000KB!");
 
-			}else
+			}else	
 			Painel::alerta("A noticia inserida já está cadastrada nesta categoria!");
 
 		}else
@@ -53,8 +53,8 @@
 
 				<?php foreach ($categorias as $key => $value) { ?>
 				
-					<option <?php if($value['categoria'] == @$_POST['categoria']) echo 'selected' ?> value="<?php echo $value['categoria'] ?>">
-						<?php echo $value['categoria'] ?>	
+					<option <?php if($value['nome'] == @$_POST['nome']) echo 'selected' ?> value="<?php echo $value['nome'] ?>">
+						<?php echo $value['nome'] ?>	
 					</option>
 
 				<?php  } ?>

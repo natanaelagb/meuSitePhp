@@ -3,7 +3,7 @@
 
 class Painel 
 {
-	function gerarSlug($str){
+	public static function gerarSlug($str){
         $str = mb_strtolower($str); //Vai converter todas as letras maiúsculas pra minúsculas
         $str = preg_replace('/(â|á|ã)/', 'a', $str);
         $str = preg_replace('/(ê|é)/', 'e', $str);
@@ -114,19 +114,19 @@ class Painel
 
 
 		$query = "INSERT INTO `$tabela` VALUES(NULL";
-		foreach ($matriz as $nome => $valor) 
+		foreach ($matriz as $key => $value) 
 		{
-			if($nome == 'acao' || $nome == 'hidden'){
+			if($key == 'acao' || $key == 'hidden'){
 				continue;
 			}
-			if($valor == ''){
+			if($value== ''){
 				Painel::alerta("Todos os campos devem ser preenchidos!");
 				return false;
 			}
-			$conteudo[]=$valor;
+			$conteudo[]=$value;
 			$query.=',?';
 		}
-		$conteudo[]= 'null';
+		$conteudo[]= 0;
 		$query.=",?)";
 		$sql = MySql::connect()->prepare($query);
 
@@ -164,7 +164,7 @@ class Painel
 		return $sql->fetch();
 	}
 
-	public static function comandoPorQuery($query,$arr = null,$metodo_id){
+	public static function comandoPorQuery($query, $metodo_id, $arr = null){
 
 		$sql = MySql::connect()->prepare($query);
 		$sql->execute($arr);
@@ -185,7 +185,7 @@ class Painel
 		
 	}
 
-	public static function deletar($query=false,$arr,$tabela){
+	public static function deletar($arr,$tabela, $query=false){
 
 		if($query==false){
 			$sql = MySql::connect()->prepare("DELETE FROM `$tabela`");

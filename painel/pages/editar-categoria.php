@@ -2,11 +2,11 @@
 	
 	if(isset($_POST['acao'])){
 
-		$categoria = $_POST['categoria'];
+		$categoria = $_POST['nome'];
 		$id = $_POST['id'];
 
 
-		if( Painel::selecionarUm("categoria=? AND id != ?",array($categoria,$id),'tb_site.categorias') == 0)
+		if( Painel::selecionarUm("nome=? AND id != ?",array($categoria,$id),'tb_site.categorias') == 0)
 		{
 			if(Painel::atualizar("id = ?",$_POST,"tb_site.categorias"))
 				Painel::alerta("Categoria atualizada com sucesso!");
@@ -42,7 +42,7 @@
 
 			<div class="form-group w100 left">
 				<label><i class="fas fa-user"></i>   Categoria</label>
-				<input type="text" name="categoria" value="<?php echo $conteudo['categoria']?>" required>
+				<input type="text" name="nome" value="<?php echo $conteudo['nome']?>" required>
 			</div>
 			
 			<div id="hidden">

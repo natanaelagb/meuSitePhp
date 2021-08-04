@@ -77,12 +77,12 @@
 
 				<?php foreach ($categorias as $key => $value) { ?>
 				
-					<option  value="<?php echo $value['categoria'] ?>"
+					<option  value="<?php echo $value['nome'] ?>"
 						 <?php 
-						 	if($conteudo['categoria'] == $value['categoria'])
+						 	if($conteudo['categoria'] == $value['nome'])
 						 		echo "selected"; 
 						 ?>>
-						<?php echo $value['categoria'] ?>	
+						<?php echo $value['nome'] ?>	
 					</option>
 
 				<?php  } ?>
