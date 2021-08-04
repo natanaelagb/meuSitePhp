@@ -8,7 +8,7 @@
 			$corpo.= ucfirst($key).": ".$value."<hr>";
 	}
 	$info = array('assunto'=>'Nova mensagem do site!','corpo'=>$corpo);
-	$mail->addAdress('natanknight@gmail.com','Natanael');
+	$mail->addAdress('EMAIL DE DESTINO','Natanael');
 	$mail->formatEmail($info);
 	if($mail->sendEmail()){
 		$data["retorno"]= true;
